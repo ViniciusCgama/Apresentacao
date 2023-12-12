@@ -1,0 +1,40 @@
+@model IEnumerable<RpgMvc.Models.DisputaViewModel>
+    @{
+    ViewBag.Title = "IndexDisputas";
+}
+
+    @if (@TempData["Mensagem"] != null)
+    {
+        <div class="alert alert-succes" role="alert">
+            @Html.Raw(@TempData["MensagemErro"])</div>
+    }
+    @if ( @TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["MensagemErro"]</div>
+    }
+
+    @{ViewBag.Title = "Disputas"; }
+    <h2>Relação de Disputas</h2>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.DataDisputa)</th>
+            <th>@Html.DisplayNameFor(model => model.Narracao)</th>
+            <th>@Html.DisplayNameFor(model => model.Resultados)</th>
+            <th></th>
+        </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+            <td>@Html.DisplayNameFor(modelItem => item.Id)</td>
+            <td>@Html.DisplayNameFor(modelItem => item.DataDisputa)</td>
+            <td>@Html.DisplayNameFor(modelItem => item.Narracao)</td>
+            <td>@Html.DisplayNameFor(modelItem => item.Resultados)</td>
+            </tr>
+            }
+
+            </table>
+         @Html.ActionLink("Apagar Disputas", "ApagarDisputas", "Disputas", null
+                            ,new {@class="btn btn-danger", onclick = "return confirm('Deseja realmente apagar as disputas?');"})
